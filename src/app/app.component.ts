@@ -17,7 +17,7 @@ export class AppComponent {
 
   async marcarHora(): Promise<void> {
     this.loading = true;
-    await this.http.post(`${environment.url}/MarcarHora`, { dateTime: DateService.format(new Date(), undefined, 'YYYY-MM-DDTHH:mm:ss') }).toPromise().then(response => {
+    await this.http.post(`https://marcar-hora-web.vercel.app/MarcarHora`, { dateTime: DateService.format(new Date(), undefined, 'YYYY-MM-DDTHH:mm:ss') }).toPromise().then(response => {
       this._snackBar.open('Marcação efetuada com sucesso!', 'Fechar', {
         duration: 3000
       });
