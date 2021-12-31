@@ -9,8 +9,10 @@
     height: calc(100% - 64px);
 }
 
-.mat-spinner {
-    ::ng-deep circle {
-        stroke: white;
-    }
+.ultima-hora-msg {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
 }

@@ -4,12 +4,17 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="container">
-  <button mat-raised-button color="primary" (click)="marcarHora()">
-    <ng-container *ngIf="!loading">
-      marcar hora
-    </ng-container>
-    <ng-container *ngIf="loading">
-      <mat-spinner [diameter]="30" defaultColor="accent"></mat-spinner>
-    </ng-container>
-  </button>
+  <div>
+    <div class="ultima-hora-msg">
+      <ng-container *ngIf="loadingUltimaMarcacao">
+        <mat-spinner [diameter]="30" defaultColor="accent"></mat-spinner>
+      </ng-container>
+      <ng-container *ngIf="!loadingUltimaMarcacao">
+        {{msgUltimaHoraMarcada}}
+      </ng-container>
+    </div>
+    <button mat-raised-button color="primary" [disabled]="loading" (click)="marcarHora()">
+      {{loading ? 'Carregando' : 'Marcar hora'}}
+    </button>
+  </div>
 </div>
