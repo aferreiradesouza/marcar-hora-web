@@ -12,7 +12,12 @@ import { DateService } from './date.service';
 export class AppComponent implements OnInit {
   public loading = false;
   public loadingUltimaMarcacao = false;
-  public msgUltimaHoraMarcada = '';
+  public msgUltimaHoraMarcada: {
+    entrada: string;
+    saidaAlmoco: string;
+    voltaAlmoco: string;
+    saida: string;
+  } | undefined;
   title = 'marcar-hora-web';
 
   constructor(private _snackBar: MatSnackBar, private http: HttpClient) { }
@@ -36,7 +41,7 @@ export class AppComponent implements OnInit {
   async obterUltimaMarcacao(): Promise<void> {
     this.loadingUltimaMarcacao = true;
     await this.http.get(`https://marcar-hora.vercel.app/obterUltimaHoraMarcada?dateTime=${DateService.format(new Date(), undefined, 'YYYY-MM-DDTHH:mm:ss')}`).toPromise().then((response: any) => {
-      this.msgUltimaHoraMarcada = response.mensagem;
+      this.msgUltimaHoraMarcada = response;
     }).catch(err => {console.log(err)}).finally(() => {
       this.loadingUltimaMarcacao = false;
     });

@@ -10,12 +10,21 @@
 }
 
 .ultima-hora-msg {
-    height: 30px;
+    min-height: 30px;
     margin-bottom: 20px;
+    width: 240px;
 }
 
 .alinhar-meio {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.d-flex {
+    display: flex;
+}
+
+.ml-auto {
+    margin-left: auto;
 }
