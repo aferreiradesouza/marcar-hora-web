@@ -27,6 +27,7 @@ export class AppComponent implements OnInit {
       this._snackBar.open('Marcação efetuada com sucesso!', 'Fechar', {
         duration: 3000
       });
+      this.obterUltimaMarcacao();
     }).catch(err => {console.log(err)}).finally(() => {
       this.loading = false;
     });
