@@ -34,6 +34,9 @@ export class AppComponent implements OnInit {
       });
       this.obterUltimaMarcacao();
     }).catch(err => {console.log(err)}).finally(() => {
+      this._snackBar.open('Algo de errado aconteceu!', 'Fechar', {
+        duration: 3000
+      });
       this.loading = false;
     });
   }
