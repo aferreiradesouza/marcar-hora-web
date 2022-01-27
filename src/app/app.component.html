@@ -4,27 +4,43 @@
   </mat-toolbar-row>
 </mat-toolbar>
 <div class="container">
-  <div>
-    <div class="ultima-hora-msg" [class.alinhar-meio]="loadingUltimaMarcacao">
-      <ng-container *ngIf="loadingUltimaMarcacao">
-        <mat-spinner [diameter]="30" defaultColor="accent"></mat-spinner>
-      </ng-container>
-      <ng-container *ngIf="!loadingUltimaMarcacao">
-        <p class="d-flex">Início: <span class="ml-auto">{{msgUltimaHoraMarcada?.entrada}}</span></p>
-        <p class="d-flex">Saída para almoço: <span class="ml-auto">{{msgUltimaHoraMarcada?.saidaAlmoco}}</span></p>
-        <p class="d-flex">Volta do almoço: <span class="ml-auto">{{msgUltimaHoraMarcada?.voltaAlmoco}}</span></p>
-        <p class="d-flex">Saída: <span class="ml-auto">{{msgUltimaHoraMarcada?.saida}}</span></p>
-      </ng-container>
+  <div class="row">
+    <div class="mt-2 col-lg-4 col-md-4 col-sm-12">
+      <mat-card>
+        <div class="row">
+          <div class="col-12">
+            <button class="w-100" style="height: 50px;" mat-raised-button color="primary" [disabled]="loading" (click)="marcarHora()">
+              {{loading ? 'Carregando' : 'Marcar hora'}}
+            </button>
+          </div>
+          <div class="col-12 mt-3">
+            <a href="https://docs.google.com/spreadsheets/d/1qFgtn0MmrxysrKcFMqKdSPhX5zTQOadh-KP6kJU8Jok/edit#gid=0"
+              target="_blank">
+              <button mat-raised-button color="warn">
+                Planilha
+              </button>
+            </a>
+          </div>
+        </div>
+      </mat-card>
     </div>
-    <div class="alinhar-meio">
-      <button mat-raised-button color="primary" [disabled]="loading" (click)="marcarHora()">
-        {{loading ? 'Carregando' : 'Marcar hora'}}
-      </button>
-      <a href="https://docs.google.com/spreadsheets/d/1qFgtn0MmrxysrKcFMqKdSPhX5zTQOadh-KP6kJU8Jok/edit#gid=0" target="_blank">
-        <button style="margin-left: 10px;" mat-raised-button color="warn">
-          Planilha
-        </button>
-      </a>
+    <div class="mt-2 col-lg-4 col-md-4 col-sm-12">
+      <mat-card>
+        <mat-card-title>Resumo do dia</mat-card-title>
+        <mat-card-content>
+          <ng-container *ngIf="loadingUltimaMarcacao">
+            <div class="w-100 alinhar-meio">
+              <mat-spinner [diameter]="30" defaultColor="accent"></mat-spinner>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="!loadingUltimaMarcacao">
+            <p class="d-flex">Início: <span class="ml-auto">{{msgUltimaHoraMarcada?.entrada}}</span></p>
+            <p class="d-flex">Saída para almoço: <span class="ml-auto">{{msgUltimaHoraMarcada?.saidaAlmoco}}</span></p>
+            <p class="d-flex">Volta do almoço: <span class="ml-auto">{{msgUltimaHoraMarcada?.voltaAlmoco}}</span></p>
+            <p class="d-flex">Saída: <span class="ml-auto">{{msgUltimaHoraMarcada?.saida}}</span></p>
+          </ng-container>
+        </mat-card-content>
+      </mat-card>
     </div>
   </div>
 </div>
