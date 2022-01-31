@@ -9,17 +9,15 @@
       <mat-card>
         <div class="row">
           <div class="col-12">
-            <button class="w-100" style="height: 50px;" mat-raised-button color="primary" [disabled]="loading" (click)="marcarHora()">
+            <button class="w-100" style="height: 50px;" mat-raised-button color="primary" [disabled]="loading"
+              (click)="marcarHora()">
               {{loading ? 'Carregando' : 'Marcar hora'}}
             </button>
           </div>
           <div class="col-12 mt-3">
-            <a href="https://docs.google.com/spreadsheets/d/1qFgtn0MmrxysrKcFMqKdSPhX5zTQOadh-KP6kJU8Jok/edit#gid=0"
-              target="_blank">
-              <button mat-raised-button color="warn">
-                Planilha
-              </button>
-            </a>
+            <button [disabled]="loadingPlanilha" mat-raised-button color="warn" (click)="obterPlanilha()">
+              {{loadingPlanilha ? 'Carregando' : 'Planilha'}}
+            </button>
           </div>
         </div>
       </mat-card>

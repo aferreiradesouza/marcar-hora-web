@@ -12,6 +12,7 @@ import { DateService } from './date.service';
 export class AppComponent implements OnInit {
   public loading = false;
   public loadingUltimaMarcacao = false;
+  public loadingPlanilha = false;
   public msgUltimaHoraMarcada: {
     entrada: string;
     saidaAlmoco: string;
@@ -23,7 +24,7 @@ export class AppComponent implements OnInit {
   constructor(private _snackBar: MatSnackBar, private http: HttpClient) { }
 
   ngOnInit(): void {
-      this.obterUltimaMarcacao();
+    this.obterUltimaMarcacao();
   }
 
   async marcarHora(): Promise<void> {
@@ -46,9 +47,17 @@ export class AppComponent implements OnInit {
     this.loadingUltimaMarcacao = true;
     await this.http.get(`https://marcar-hora.vercel.app/obterUltimaHoraMarcada?dateTime=${DateService.format(new Date(), undefined, 'YYYY-MM-DDTHH:mm:ss')}`).toPromise().then((response: any) => {
       this.msgUltimaHoraMarcada = response;
-    }).catch(err => {console.log(err)}).finally(() => {
+    }).catch(err => { console.log(err) }).finally(() => {
       this.loadingUltimaMarcacao = false;
     });
+  }
+
+  async obterPlanilha(): Promise<any> {
+    this.loadingPlanilha = true;
+    await this.http.get(`https://marcar-hora.vercel.app/obterPlanilha`).toPromise().then((response: any) => {
+      window.open(`https://docs.google.com/spreadsheets/d/1qFgtn0MmrxysrKcFMqKdSPhX5zTQOadh-KP6kJU8Jok/edit#gid=${response.id}`, '_blank');
+    }).catch(err => { });
+    this.loadingPlanilha = false;
   }
 }
 
